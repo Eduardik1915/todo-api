@@ -3,7 +3,7 @@
 A simple RESTful Todo API built with **Spring Boot 3.4.4** and **PostgreSQL**.
 
 This project is ideal for understanding the structure of a clean, modular Spring Boot application, and can be used as part of a developer's portfolio.
-
+                  
 ---
 
 ## 🚀 Features
@@ -92,7 +92,8 @@ The project contains both **unit** and **integration** tests:
 - [ ] Add pagination and sorting
 - [ ] Add filtering (e.g., by completed status)
 - [ ] Add entity user
-- 🔐 Implement authentication
+- [ ] Add logging
+- [ ] Implement authentication
 - [ ] Dockerize the app
 
 ---
