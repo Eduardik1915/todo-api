@@ -26,11 +26,6 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    @GetMapping("/")
-    public String redirectToSwagger() {
-        return "redirect:/swagger-ui/index.html";
-    }
-
     @Operation(summary = "Find all tasks", description = "Returns all tasks",
             responses = {
                     @ApiResponse(
