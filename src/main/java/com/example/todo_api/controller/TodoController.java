@@ -26,14 +26,14 @@ public class TodoController {
 
     private final TodoService todoService;
 
-   /* @Operation(summary = "Find all tasks", description = "Returns all tasks",
+    @Operation(summary = "Find all tasks", description = "Returns all tasks",
             responses = {
                     @ApiResponse(
                             description = "Successful operation",
                             responseCode = "200",
                             content = @Content(mediaType = "application/json",
                                     array = @ArraySchema(schema = @Schema(implementation = TodoResponseDto.class))))
-            })*/
+            })
     @GetMapping
     public ResponseEntity<List<TodoResponseDto>> getAllTodos() {
         List<TodoResponseDto> allTodos = todoService.getAllTodos();
@@ -41,7 +41,7 @@ public class TodoController {
     }
 
 
-    /*@Operation(summary = "Find task by id", description = "Returns a task by its ID",
+    @Operation(summary = "Find task by id", description = "Returns a task by its ID",
             parameters = {
                     @Parameter(
                             name = "id",
@@ -64,7 +64,7 @@ public class TodoController {
                                     schema = @Schema(implementation = String.class),
                                     examples = @ExampleObject(value = "Task with id 1 not found"))
                     )
-            })*/
+            })
     @GetMapping("/{id}")
     public ResponseEntity<TodoResponseDto> getTodoById(@PathVariable Long id) {
         TodoResponseDto todoById = todoService.getTodoById(id);
@@ -72,7 +72,7 @@ public class TodoController {
     }
 
 
-   /* @Operation(summary = "Create new task", description = "Creates new task and returns it",
+    @Operation(summary = "Create new task", description = "Creates new task and returns it",
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "DTO containing data for the new task",
                     required = true,
@@ -95,7 +95,7 @@ public class TodoController {
                             content = @Content(mediaType = "application/json",
                                     examples = @ExampleObject(value = "Title can't be blank"))
                     )
-            })*/
+            })
     @PostMapping
     public ResponseEntity<TodoResponseDto> createTodo(@RequestBody @Valid TodoCreateDto todoCreateDto) {
         TodoResponseDto todo = todoService.createTodo(todoCreateDto);
@@ -103,7 +103,7 @@ public class TodoController {
     }
 
 
-   /* @Operation(summary = "Update task", description = "Update existing task",
+    @Operation(summary = "Update task", description = "Update existing task",
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "DTO with updated task data",
                     required = true,
@@ -140,7 +140,7 @@ public class TodoController {
                                     schema = @Schema(implementation = String.class),
                                     examples = @ExampleObject(value = "Task with id 1 not found"))
                     )
-            })*/
+            })
     @PutMapping("/{id}")
     public ResponseEntity<TodoResponseDto> updateTodo(@PathVariable Long id, @RequestBody @Valid TodoUpdateDto updatedTodo) {
         TodoResponseDto todoResponseDto = todoService.updateTodo(id, updatedTodo);
@@ -148,7 +148,7 @@ public class TodoController {
     }
 
 
-   /* @Operation(summary = "Delete task", description = "Deletes a task from the database based on its ID",
+    @Operation(summary = "Delete task", description = "Deletes a task from the database based on its ID",
             parameters = {
                     @Parameter(
                             name = "id",
@@ -167,7 +167,7 @@ public class TodoController {
                             content = @Content(mediaType = "text/plain",
                                     schema = @Schema(implementation = String.class),
                                     examples = @ExampleObject(value = "Task with id 1 not found")))
-            })*/
+            })
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteTodo(@PathVariable Long id) {
         todoService.deleteTodo(id);
