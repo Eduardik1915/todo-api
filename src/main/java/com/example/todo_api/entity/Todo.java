@@ -20,12 +20,15 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
     private String description;
 
+    @Column(nullable = false)
     private Boolean completed = false;
 
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     @PrePersist

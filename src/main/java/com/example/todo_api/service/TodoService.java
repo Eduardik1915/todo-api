@@ -16,6 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TodoService {
 
+    private final String entityNotFound = "Task with id %d not found";
+
     private final TodoRepository todoRepository;
     private final TodoMapper todoMapper;
 
@@ -29,7 +31,7 @@ public class TodoService {
     public TodoResponseDto getTodoById(Long id) {
         return todoRepository.findById(id)
                 .map(todoMapper::toResponseDto)
-                .orElseThrow(() -> new EntityNotFoundException("Task with id " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException(String.format(entityNotFound, id)));
     }
 
     public TodoResponseDto createTodo(TodoCreateDto todoCreateDto) {
@@ -41,14 +43,14 @@ public class TodoService {
     public TodoResponseDto updateTodo(Long id, TodoUpdateDto updatedTodo) {
         Todo foundTodo = todoRepository.findById(id)
                 .map(todo -> todoMapper.updateTodoFromDto(updatedTodo, todo))
-                .orElseThrow(() -> new EntityNotFoundException("Task with id " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException(String.format(entityNotFound, id)));
         Todo savedTodo = todoRepository.save(foundTodo);
         return todoMapper.toResponseDto(savedTodo);
     }
 
     public void deleteTodo(Long id) {
         if (!todoRepository.existsById(id)) {
-            throw new EntityNotFoundException("Task with id " + id + " not found");
+            throw new EntityNotFoundException(String.format(entityNotFound, id));
         }
         todoRepository.deleteById(id);
     }

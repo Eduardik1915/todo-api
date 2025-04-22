@@ -1,79 +1,122 @@
-# 📝 Todo API
+# 📋 ToDo API
 
-A simple RESTful Todo API built with **Spring Boot 3.4.4** and **PostgreSQL**.
+A simple RESTful API for managing tasks — built with Spring Boot, PostgreSQL, and JPA. Serves as a basic CRUD application template.
 
-This project is ideal for understanding the structure of a clean, modular Spring Boot application, and can be used as part of a developer's portfolio.
-                  
 ---
 
 ## 🚀 Features
 
-- ✅ Create, Read, Update, Delete (CRUD) operations for todos
-- 📦 DTO and Mapper layer (MapStruct-ready)
-- 🧪 Unit & Integration tests using JUnit 5, Mockito
-- 📄 OpenAPI / Swagger documentation (`/swagger-ui/index.html`)
-- 📁 Environment variable support via `dotenv-java`
-- 🐘 PostgreSQL integration via Spring Data JPA
-- 💡 Clear separation of concerns: Controller, Service, Repository
-- 📚 Easily extendable for more features
+- 📌 Create, read, update, and delete tasks (CRUD)
+- 🔗 REST API with a standard structure
+- 🗃️ PostgreSQL integration via Spring Data JPA
+- 📁 Ready for local deployment
+- 📖 Swagger UI available for exploring the API
 
 ---
 
-## 📦 Tech Stack
+## 🛠️ Technologies
 
 - Java 17
-- Spring Boot 3.4.4
+- Spring Boot 3
+- Spring Data JPA
 - PostgreSQL
-- JPA/Hibernate
-- dotenv-java
-- JUnit 5 + Mockito
-- Springdoc OpenAPI (Swagger UI)
-- Lombok
+- Maven
 - MapStruct
+- OpenAPI (Swagger)
+- JUnit 5 + Mockito
+- Lombok
 
 ---
 
-## 📂 Project Structure
+## 🗂️ Project Structure
 
-```bash
-todo-api/
-├── controller/         # REST controllers
-├── dto/                # Data Transfer Objects
-├── entity/             # JPA entities
-├── mapper/             # Mapper interfaces
-├── repository/         # Spring Data repositories
-├── service/            # Business logic
-├── exception/          # Custom exception handlers
-├── test/               # Unit and integration tests
-└── application.yaml    # Main Spring Boot config
+```
+src/
+├── main/
+│   ├── java/com/example/todo_api/
+│   │   ├── controller/
+│   │   ├── model/
+│   │   ├── repository/
+│   │   ├── service/
+│   │   └── ToDoApiApplication.java
+│   └── resources/
+│       ├── application.properties
+└── test/
+    ├── java/com/example/todo_api/
+        └── controller/
 ```
 
 ---
 
-## 🛠️ Running Locally
+## 📦 Setup and Run
 
-Make sure you have PostgreSQL running.
+### 1. Clone the repository
 
-1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/todo-api.git
+git clone https://github.com/Eduardik1915/todo-api.git
 cd todo-api
 ```
 
-2. Create `.env` file:
-```env
-DB_URL=jdbc:postgresql://localhost:5431/todos
-DB_USERNAME=your_db_user
-DB_PASSWORD=your_db_password
+### 2. Configure the database
+
+Create a PostgreSQL database (locally or via cloud) and update your `application.properties`:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/todo_db
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
 ```
 
-3. Run the application:
+### 3. Run the application
+
 ```bash
 ./mvnw spring-boot:run
 ```
 
-4. Visit Swagger UI:  
-   [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+The app will be available at `http://localhost:8080`
+
+To explore the API via Swagger UI, go to: `http://localhost:8080/swagger-ui.html`
+
+---
+
+## 📌 API Examples
+
+### 🔹 Get all tasks
+
+```http
+GET /api/todos
+```
+
+### 🔹 Create a task
+
+```http
+POST /api/todos
+Content-Type: application/json
+
+{
+  "title": "Write README",
+  "completed": false
+}
+```
+
+### 🔹 Update a task
+
+```http
+PUT /api/todos/{id}
+Content-Type: application/json
+
+{
+  "title": "README completed!",
+  "completed": true
+}
+```
+
+### 🔹 Delete a task
+
+```http
+DELETE /api/todos/{id}
+```
 
 ---
 
@@ -81,9 +124,21 @@ DB_PASSWORD=your_db_password
 
 The project contains both **unit** and **integration** tests:
 
-- Controller tests with `@WebMvcTest`
-- Service layer tests with `@ExtendWith(MockitoExtension.class)`
+- Controller tests using `@WebMvcTest`
+- Service layer tests using `@ExtendWith(MockitoExtension.class)`
 - More test coverage coming soon!
+
+To run tests, use the following command:
+
+```bash
+./mvnw test
+```
+
+---
+
+## 🌍 Deployment
+
+Cloud hosting like Railway or any other hosting can be connected later. Basic config is ready.
 
 ---
 
@@ -98,13 +153,13 @@ The project contains both **unit** and **integration** tests:
 
 ---
 
-## 🧑‍💻 Author
+## 👨‍💻 Author
 
-Made by Eduards – [@your_github](https://github.com/your_github)  
-_You can replace this with your actual name and link._
+- Eduardik1915  
+- [GitHub](https://github.com/Eduardik1915/todo-api)
 
 ---
 
-## 📃 License
+## 📝 License
 
-This project is open-source and available under the MIT License.
+This project is open source under the MIT license.

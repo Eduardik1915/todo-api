@@ -37,7 +37,7 @@ public class TodoController {
     @GetMapping
     public ResponseEntity<List<TodoResponseDto>> getAllTodos() {
         List<TodoResponseDto> allTodos = todoService.getAllTodos();
-        return ResponseEntity.ok(allTodos);
+        return ResponseEntity.status(HttpStatus.OK).body(allTodos);
     }
 
 
@@ -68,7 +68,7 @@ public class TodoController {
     @GetMapping("/{id}")
     public ResponseEntity<TodoResponseDto> getTodoById(@PathVariable Long id) {
         TodoResponseDto todoById = todoService.getTodoById(id);
-        return ResponseEntity.ok(todoById);
+        return ResponseEntity.status(HttpStatus.OK).body(todoById);
     }
 
 
@@ -144,7 +144,7 @@ public class TodoController {
     @PutMapping("/{id}")
     public ResponseEntity<TodoResponseDto> updateTodo(@PathVariable Long id, @RequestBody @Valid TodoUpdateDto updatedTodo) {
         TodoResponseDto todoResponseDto = todoService.updateTodo(id, updatedTodo);
-        return ResponseEntity.ok(todoResponseDto);
+        return ResponseEntity.status(HttpStatus.OK).body(todoResponseDto);
     }
 
 
@@ -171,6 +171,6 @@ public class TodoController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteTodo(@PathVariable Long id) {
         todoService.deleteTodo(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
