@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -97,7 +98,7 @@ public class TodoController {
                     )
             })
     @PostMapping
-    public ResponseEntity<TodoResponseDto> createTodo(@RequestBody @Valid TodoCreateDto todoCreateDto) {
+    public ResponseEntity<TodoResponseDto> createTodo(@RequestBody @Valid @NotNull TodoCreateDto todoCreateDto) {
         TodoResponseDto todo = todoService.createTodo(todoCreateDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(todo);
     }
@@ -142,7 +143,7 @@ public class TodoController {
                     )
             })
     @PutMapping("/{id}")
-    public ResponseEntity<TodoResponseDto> updateTodo(@PathVariable Long id, @RequestBody @Valid TodoUpdateDto updatedTodo) {
+    public ResponseEntity<TodoResponseDto> updateTodo(@PathVariable Long id, @RequestBody @Valid @NotNull TodoUpdateDto updatedTodo) {
         TodoResponseDto todoResponseDto = todoService.updateTodo(id, updatedTodo);
         return ResponseEntity.status(HttpStatus.OK).body(todoResponseDto);
     }

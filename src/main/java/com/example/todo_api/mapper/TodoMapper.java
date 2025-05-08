@@ -14,5 +14,5 @@ public interface TodoMapper {
 
     Todo toTodoFromCreateDto(TodoCreateDto todoCreateDto);
 
-    Todo updateTodoFromDto(TodoUpdateDto updateDto, @MappingTarget Todo todo);
+    Todo todoFromUpdateDto(TodoUpdateDto updateDto, @MappingTarget Todo todo);
 }

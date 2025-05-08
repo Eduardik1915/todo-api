@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Data
+@Builder
 public class TodoCreateDto {
 
     @Schema(description = "Title of the task", example = "Buy milk")

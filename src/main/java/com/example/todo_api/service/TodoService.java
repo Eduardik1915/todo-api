@@ -42,7 +42,7 @@ public class TodoService {
 
     public TodoResponseDto updateTodo(Long id, TodoUpdateDto updatedTodo) {
         Todo foundTodo = todoRepository.findById(id)
-                .map(todo -> todoMapper.updateTodoFromDto(updatedTodo, todo))
+                .map(todo -> todoMapper.todoFromUpdateDto(updatedTodo, todo))
                 .orElseThrow(() -> new EntityNotFoundException(String.format(entityNotFound, id)));
         Todo savedTodo = todoRepository.save(foundTodo);
         return todoMapper.toResponseDto(savedTodo);
